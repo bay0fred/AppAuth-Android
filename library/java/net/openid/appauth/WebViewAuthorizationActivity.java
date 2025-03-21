@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 public class WebViewAuthorizationActivity extends AppCompatActivity {
 
+    private static final String EXTRA_AUTH_URL = "authUrl";
+    private static final String EXTRA_REDIRECT_URI = "redirectUri";
     private static final String EXTRA_AUTH_REQUEST = "authRequest";
     public static final String ACTION_AUTHORIZATION = "net.openid.appauth.HANDLE_AUTHORIZATION_RESPONSE";
 
@@ -35,7 +37,7 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        String json = String.valueOf(getIntent().getParcelableExtra(EXTRA_AUTH_REQUEST));
+        String json = getIntent().getStringExtra(EXTRA_AUTH_REQUEST);
         AuthorizationRequest authRequest = null;
         try {
             authRequest = AuthorizationRequest.jsonDeserialize(json);
