@@ -26,6 +26,12 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
         WebView webView = new WebView(this);
         setContentView(webView);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         AuthorizationRequest authRequest = getIntent().getParcelableExtra(EXTRA_AUTH_REQUEST);
         if (authRequest == null) {
             finish();
