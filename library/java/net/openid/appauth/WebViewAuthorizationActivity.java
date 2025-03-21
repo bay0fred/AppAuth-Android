@@ -13,6 +13,9 @@ import android.webkit.WebViewClient;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class WebViewAuthorizationActivity extends AppCompatActivity {
 
     private static final String EXTRA_AUTH_REQUEST = "authRequest";
@@ -32,11 +35,20 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        AuthorizationRequest authRequest = getIntent().getParcelableExtra(EXTRA_AUTH_REQUEST);
+        String json = String.valueOf(getIntent().getParcelableExtra(EXTRA_AUTH_REQUEST));
+        AuthorizationRequest authRequest = null;
+        try {
+            authRequest = AuthorizationRequest.jsonDeserialize(json);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
         if (authRequest == null) {
             finish();
             return;
         }
+
+        final AuthorizationRequest finalAuthRequest = authRequest;
 
         // Configure WebView settings
         webView.getSettings().setJavaScriptEnabled(true);
@@ -52,13 +64,13 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
                 }
 
                 // Check if the URL matches the redirect URI
-                if (uri.toString().startsWith(authRequest.redirectUri.toString())) {
+                if (uri.toString().startsWith(finalAuthRequest.redirectUri.toString())) {
                     // Extract response parameters
                     Intent responseIntent = new Intent();
                     responseIntent.setData(uri);
 
                     // Create response from redirect URI
-                    AuthorizationResponse response = new AuthorizationResponse.Builder(authRequest)
+                    AuthorizationResponse response = new AuthorizationResponse.Builder(finalAuthRequest)
                         .fromUri(uri)
                         .build();
                     //AuthorizationResponse response = AuthorizationResponse.fromUri(uri);
