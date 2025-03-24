@@ -6,16 +6,10 @@
     android:background="@android:color/white"
     android:fitsSystemWindows="true">
 
-    <!-- White Top Bar (Same Height as Status Bar) -->
-    <!--<View
-        android:id="@+id/statusBarPlaceholder"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:background="@android:color/white" />-->
-
     <!-- WebView -->
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    
 </LinearLayout>

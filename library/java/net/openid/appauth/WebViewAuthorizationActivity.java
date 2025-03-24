@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class WebViewAuthorizationActivity extends AppCompatActivity {
 
@@ -30,8 +27,6 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        WebView webView = new WebView(this);
-//        setContentView(webView);
         setContentView(R.layout.activity_webview_authorization);
 
         String json = getIntent().getStringExtra(EXTRA_AUTH_REQUEST);
@@ -48,12 +43,6 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
         }
 
         final AuthorizationRequest finalAuthRequest = authRequest;
-
-        // Set dynamic status bar height
-//        View statusBarPlaceholder = findViewById(R.id.statusBarPlaceholder);
-//        ViewGroup.LayoutParams params = statusBarPlaceholder.getLayoutParams();
-//        params.height = getStatusBarHeight();
-//        statusBarPlaceholder.setLayoutParams(params);
 
         // Initialize WebView
         WebView webView = findViewById(R.id.webView);
@@ -108,10 +97,5 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, WebViewAuthorizationActivity.class);
         intent.putExtra(EXTRA_AUTH_REQUEST, request.jsonSerializeString());
         return intent;
-    }
-
-    private int getStatusBarHeight() {
-        @SuppressLint("InternalInsetResource") int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return resourceId > 0 ? getResources().getDimensionPixelSize(resourceId) : 0;
     }
 }
