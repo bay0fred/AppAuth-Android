@@ -50,10 +50,10 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
         final AuthorizationRequest finalAuthRequest = authRequest;
 
         // Set dynamic status bar height
-        View statusBarPlaceholder = findViewById(R.id.statusBarPlaceholder);
-        ViewGroup.LayoutParams params = statusBarPlaceholder.getLayoutParams();
-        params.height = getStatusBarHeight();
-        statusBarPlaceholder.setLayoutParams(params);
+//        View statusBarPlaceholder = findViewById(R.id.statusBarPlaceholder);
+//        ViewGroup.LayoutParams params = statusBarPlaceholder.getLayoutParams();
+//        params.height = getStatusBarHeight();
+//        statusBarPlaceholder.setLayoutParams(params);
 
         // Initialize WebView
         WebView webView = findViewById(R.id.webView);
