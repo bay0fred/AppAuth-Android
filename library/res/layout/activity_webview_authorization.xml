@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
     android:fitsSystemWindows="true">
 
-    <androidx.core.widget.NestedScrollView
+    <!-- White Top Bar (Same Height as Status Bar) -->
+    <!--<View
+        android:id="@+id/statusBarPlaceholder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="24dp"
+        android:background="@android:color/white" />-->
 
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@android:color/white">-->
-
-            <!-- White Top Bar (Same Height as Status Bar) -->
-            <!--<View
-                android:id="@+id/statusBarPlaceholder"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@android:color/white" />-->
-
-            <!-- WebView -->
-            <WebView
-                android:id="@+id/webView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-       <!--</LinearLayout>-->
-
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- WebView -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
