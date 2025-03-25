@@ -1,5 +1,4 @@
 package net.openid.appauth;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,10 +8,8 @@ import android.os.Bundle;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.json.JSONException;
 
 public class WebViewAuthorizationActivity extends AppCompatActivity {
@@ -20,7 +17,6 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
     private static final String EXTRA_AUTH_URL = "authUrl";
     private static final String EXTRA_REDIRECT_URI = "redirectUri";
     private static final String EXTRA_AUTH_REQUEST = "authRequest";
-    public static final String ACTION_AUTHORIZATION = "net.openid.appauth.HANDLE_AUTHORIZATION_RESPONSE";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -62,24 +58,11 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
 
                 // Check if the URL matches the redirect URI
                 if (uri.toString().startsWith(finalAuthRequest.redirectUri.toString())) {
-                    // Extract response parameters
-//                    Intent responseIntent = new Intent();
-//                    responseIntent.setData(uri);
 
                     // Create response from redirect URI
                     AuthorizationResponse response = new AuthorizationResponse.Builder(finalAuthRequest)
                         .fromUri(uri)
                         .build();
-                    //AuthorizationResponse response = AuthorizationResponse.fromUri(uri);
-                    AuthorizationException ex = AuthorizationException.fromOAuthRedirect(uri);
-
-//                    if (response != null) {
-//                        responseIntent.putExtra(AuthorizationResponse.EXTRA_RESPONSE, response.toIntent());
-//                    }
-
-//                    if (ex != null) {
-//                        responseIntent.putExtra(AuthorizationException.EXTRA_EXCEPTION, ex);
-//                    }
 
                     setResult(RESULT_OK, response.toIntent());
                     finish();
