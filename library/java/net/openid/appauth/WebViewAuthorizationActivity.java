@@ -63,8 +63,8 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
                 // Check if the URL matches the redirect URI
                 if (uri.toString().startsWith(finalAuthRequest.redirectUri.toString())) {
                     // Extract response parameters
-                    Intent responseIntent = new Intent();
-                    responseIntent.setData(uri);
+//                    Intent responseIntent = new Intent();
+//                    responseIntent.setData(uri);
 
                     // Create response from redirect URI
                     AuthorizationResponse response = new AuthorizationResponse.Builder(finalAuthRequest)
@@ -73,15 +73,15 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
                     //AuthorizationResponse response = AuthorizationResponse.fromUri(uri);
                     AuthorizationException ex = AuthorizationException.fromOAuthRedirect(uri);
 
-                    if (response != null) {
-                        responseIntent.putExtra(AuthorizationResponse.EXTRA_RESPONSE, response.toIntent());
-                    }
+//                    if (response != null) {
+//                        responseIntent.putExtra(AuthorizationResponse.EXTRA_RESPONSE, response.toIntent());
+//                    }
 
-                    if (ex != null) {
-                        responseIntent.putExtra(AuthorizationException.EXTRA_EXCEPTION, ex);
-                    }
+//                    if (ex != null) {
+//                        responseIntent.putExtra(AuthorizationException.EXTRA_EXCEPTION, ex);
+//                    }
 
-                    setResult(RESULT_OK, responseIntent);
+                    setResult(RESULT_OK, response.toIntent());
                     finish();
                     return true;
                 }
