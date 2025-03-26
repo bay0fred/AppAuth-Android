@@ -17,6 +17,12 @@ dependencies {
     api "androidx.browser:browser:${project.androidXVersions.browser}"
     implementation "androidx.annotation:annotation:${project.androidXVersions.annotation}"
     implementation "androidx.appcompat:appcompat:${project.androidXVersions.appCompat}"
+    implementation "androidx.credentials:credentials:1.5.0"
+
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    implementation "androidx.credentials:credentials-play-services-auth:1.5.0"
+
     apply from: '../config/testdeps.gradle', to:it
 }
 
