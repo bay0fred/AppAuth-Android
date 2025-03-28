@@ -3,6 +3,13 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 apply from: '../config/android-common.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
 
 group = GROUP
 version = rootProject.versionName
@@ -19,6 +26,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${project.androidXVersions.appCompat}"
     implementation "androidx.credentials:credentials:1.5.0"
     implementation "androidx.webkit:webkit:1.13.0"
+    implementation 'androidx.core:core-ktx:1.15.0'
 
     // optional - needed for credentials support from play services, for devices running
     // Android 13 and below.
@@ -27,13 +35,13 @@ dependencies {
     apply from: '../config/testdeps.gradle', to:it
 }
 
-apply from: '../config/style.gradle'
-apply from: '../config/coverage.gradle'
-apply from: '../config/javadoc.gradle'
+//apply from: '../config/style.gradle'
+//apply from: '../config/coverage.gradle'
+//apply from: '../config/javadoc.gradle'
 
 artifacts {
     archives sourcesJar
-    archives javadocJar
+    //archives javadocJar
 }
 
 publishing {
@@ -45,7 +53,7 @@ publishing {
 
             artifact("$buildDir/outputs/aar/${project.archivesBaseName}-release.aar")
             artifact sourcesJar
-            artifact javadocJar
+            //artifact javadocJar
 
             pom {
                 name = POM_NAME

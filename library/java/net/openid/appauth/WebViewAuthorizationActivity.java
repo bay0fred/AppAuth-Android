@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-//import androidx.lifecycle.LifecycleOwnerKt;
+import androidx.lifecycle.LifecycleOwnerKt;
 import androidx.webkit.WebViewCompat;
 import androidx.webkit.WebViewFeature;
 
@@ -21,8 +21,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
-//import kotlinx.coroutines.CoroutineScope;
+import kotlinx.coroutines.CoroutineScope;
 
 public class WebViewAuthorizationActivity extends AppCompatActivity {
 
@@ -66,9 +65,10 @@ public class WebViewAuthorizationActivity extends AppCompatActivity {
         if (listenerSupported) {
             // Inject local JavaScript that calls Credential Manager.
             //hookWebAuthnWithListener(webView, this, coroutineScope, credentialManagerHandler);
-            //CoroutineScope coroutineScope = LifecycleOwnerKt.getLifecycleScope(this);
+            CoroutineScope coroutineScope = LifecycleOwnerKt.getLifecycleScope(this);
             PasskeyWebListener passkeyWebListener = new PasskeyWebListener(
                 this,
+                coroutineScope,
                 credentialManagerHandler
             );
 
