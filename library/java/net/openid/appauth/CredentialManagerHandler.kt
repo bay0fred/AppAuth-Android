@@ -13,7 +13,7 @@ import androidx.credentials.exceptions.*
  */
 class CredentialManagerHandler(private val activity: Activity) {
 
-    private val mCredMan = CredentialManager.create(activity.applicationContext)
+    private val mCredMan = CredentialManager.create(activity)
     private val TAG = "CredentialManagerHandler"
 
     /**
