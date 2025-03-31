@@ -121,7 +121,13 @@ class PasskeyWebListener(
                         handleCreateFlow(credentialManagerHandler, message, replyCurrent)
                     }
                 GET_UNIQUE_KEY -> this.coroutineScope.launch {
-                    handleGetFlow(credentialManagerHandler, message, replyCurrent)
+
+                    // Set allowCredentials to empty array
+                    val tempJson = JSONObject(message);
+                    tempJson.put("allowCredentials", JSONArray())
+                    val newMessage = tempJson.toString()
+
+                    handleGetFlow(credentialManagerHandler, newMessage, replyCurrent)
                 }
                 else -> Log.i(TAG, "Incorrect request json")
             }
